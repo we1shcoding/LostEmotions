@@ -1,74 +1,85 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class background : MonoBehaviour
 {
-    public float speed;//배경 속도
-    public Transform[] backgrounds;//배경 담을 변수
 
-    float leftPosX = 0f;//배경 끝 x좌표
-    float rightPosX = 0f;//배경 시작 x좌표
-    float xScreenHalfSize;//게임 화면의 x좌표 절반
-    float yScreenHalfSize;//게임 화면의 y좌표 절반
-    //스크롤링 변수
+    //플레이어 안 움직여도 흐르는 하늘배경 스크롤링
 
-    // Start is called before the first frame update
-    void Start()
-    {//초기화
-        yScreenHalfSize = Camera.main.orthographicSize;
-        xScreenHalfSize = yScreenHalfSize * Camera.main.aspect;
+    [SerializeField]
+    private Transform[] backgrounds; // 두 개의 배경 이미지
+    [SerializeField]
+    private float scrollSpeed; // 배경 스크롤 속도
+    [SerializeField]
+    private Camera mainCamera; // 메인 카메라
 
-        leftPosX = -(xScreenHalfSize * 2);
-        rightPosX = xScreenHalfSize * 2 * backgrounds.Length;
+    private float viewZone; // 카메라의 가로 범위
+    private int leftIndex; // 왼쪽 배경의 인덱스
+    private int rightIndex; // 오른쪽 배경의 인덱스
+    private float backgroundWidth; // 배경 이미지의 너비
 
-    }
-    public void OnRightMove()
+    private void Start()
     {
-        for (int i = 0; i < backgrounds.Length; i++)
+        if (backgrounds.Length < 2)
         {
-            backgrounds[i].position += new Vector3(-speed, 0, 0) * Time.deltaTime;
-
-            if (backgrounds[i].position.x < leftPosX)
-            {
-                Vector3 nextPos = backgrounds[i].position;
-                nextPos = new Vector3(nextPos.x + rightPosX, nextPos.y, nextPos.z);
-                backgrounds[i].position = nextPos;
-            }
+            Debug.LogError("배경 이미지가 2개 이상 필요합니다.");
+            return;
         }
+
+        // 각 배경 이미지의 너비를 설정 (배경 이미지가 동일한 너비를 가진다고 가정)
+        backgroundWidth = backgrounds[0].GetComponent<SpriteRenderer>().bounds.size.x;
+
+        // 카메라의 가로 범위를 설정
+        viewZone = mainCamera.orthographicSize * Screen.width / Screen.height;
+
+        // 초기 인덱스 설정
+        leftIndex = 0;
+        rightIndex = backgrounds.Length - 1;
     }
 
-    public void OnLeftMove()
+    private void Update()
     {
+        // 배경 이미지를 왼쪽으로 이동
         for (int i = 0; i < backgrounds.Length; i++)
         {
-            backgrounds[i].position += new Vector3(speed, 0, 0) * Time.deltaTime;
+            backgrounds[i].Translate(Vector3.left * scrollSpeed * Time.deltaTime);
+        }
 
-            if (backgrounds[i].position.x > -leftPosX)
-            {
-                Vector3 nextPos = backgrounds[i].position;
-                nextPos = new Vector3(nextPos.x - rightPosX, nextPos.y, nextPos.z);
-                backgrounds[i].position = nextPos;
-            }
+        // 오른쪽 배경이 카메라 왼쪽으로 벗어났을 때
+        if (mainCamera.transform.position.x - backgrounds[leftIndex].position.x > viewZone + backgroundWidth / 2)
+        {
+            ScrollLeft();
+        }
+
+        // 왼쪽 배경이 카메라 오른쪽으로 벗어났을 때
+        if (backgrounds[rightIndex].position.x - mainCamera.transform.position.x > viewZone + backgroundWidth / 2)
+        {
+            ScrollRight();
         }
     }
 
-
-// Update is called once per frame
-void Update()
-    {//배경들의 좌표를 speed만큼 계속 이동
-        for (int i = 0; i < backgrounds.Length; i++)
+    private void ScrollLeft()
+    {
+        // 왼쪽 배경을 오른쪽 끝으로 이동
+        int lastRight = rightIndex;
+        backgrounds[leftIndex].position = backgrounds[rightIndex].position + Vector3.right * backgroundWidth;
+        rightIndex = leftIndex;
+        leftIndex++;
+        if (leftIndex == backgrounds.Length)
         {
-            backgrounds[i].position += new Vector3(-speed, 0, 0) * Time.deltaTime;
-
-            if (backgrounds[i].position.x < leftPosX)//이동 중 x좌표가 배경 끝 x좌표보다 작아짐=배경이 사라짐
-            {//배경 x좌표를 rightPosX(배경 시작 좌표)만큼 이동시켜 다시 화면의 시작에 위치하도록 배치
-                Vector3 nextPos = backgrounds[i].position;
-                nextPos = new Vector3(nextPos.x + rightPosX, nextPos.y, nextPos.z);
-                backgrounds[i].position = nextPos;
-            }
+            leftIndex = 0;
         }
-
     }
 
+    private void ScrollRight()
+    {
+        // 오른쪽 배경을 왼쪽 끝으로 이동
+        int lastLeft = leftIndex;
+        backgrounds[rightIndex].position = backgrounds[leftIndex].position - Vector3.right * backgroundWidth;
+        leftIndex = rightIndex;
+        rightIndex--;
+        if (rightIndex < 0)
+        {
+            rightIndex = backgrounds.Length - 1;
+        }
+    }
 }

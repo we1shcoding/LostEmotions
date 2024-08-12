@@ -25,6 +25,7 @@ public class playerMove : MonoBehaviour
     public Transform pos;//오른쪽방향
     public Transform posLeft;
     public Vector2 boxSize;
+    public float invincibleDuration = 0.5f;//공격무적
 
     //피격 중복방지
     private bool isHurt = false;
@@ -73,7 +74,7 @@ public class playerMove : MonoBehaviour
             {
                 spriteRenderer.flipX = false;
             }
-        
+
         }
 
         // 걷기 애니메이션
@@ -88,7 +89,7 @@ public class playerMove : MonoBehaviour
             if (Input.GetKey(KeyCode.Z))
             {
                 //if문으로 horizontal 체크해서 반대편 만들면 될듯?
-                Vector2 posAttck;
+                /*Vector2 posAttck;
                 if (Input.GetAxisRaw("Horizontal") == 1)
                 {
                     posAttck = pos.position;
@@ -96,15 +97,32 @@ public class playerMove : MonoBehaviour
                 else
                 {
                     posAttck = posLeft.position;
-                }
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(posAttck, boxSize, 0);
+                }*/
+
+                Vector2 posAttack = spriteRenderer.flipX ? pos.position : posLeft.position;
+
+                bool monsterInRange = false;
+
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(posAttack, boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
                 {
                     if (collider.tag == "monster")
                     {//random 함수로 데미지 1~4 랜덤 출력
-                        collider.GetComponent<purple_slime_move>().TakeDamage(Random.Range(1,5));
+                        collider.GetComponent<purple_slime_move>().TakeDamage(Random.Range(1, 5));
+                        monsterInRange = true;
                     }
                 }
+
+                //무적 적용
+                StartCoroutine(invincible());
+
+                //공격시 앞 대쉬 이동
+                if (!monsterInRange)
+                {
+                    StartCoroutine(Adash());
+                }
+
+
                 anim.SetTrigger("attack");
                 curTime = coolTime;
             }
@@ -207,7 +225,28 @@ public class playerMove : MonoBehaviour
             // 시간차를 주기 위한 Invoke 사용
             Invoke("OffDamaged", 2);
         }
-        
+
+    }
+
+    IEnumerator invincible()
+    {//공격무적
+        isHurt = true;
+        yield return new WaitForSeconds(invincibleDuration);
+        isHurt = false;
+    }
+
+    IEnumerator Adash()
+    {
+        float dashDirection = spriteRenderer.flipX ? 1 : -1; // 대시 방향 설정
+        float originalGravity = rigid.gravityScale; // 원래 중력 값 저장
+        rigid.gravityScale = 0; // 대시 동안 중력 무시
+        float dashDistance = dashPower * 2;
+        rigid.velocity = new Vector2(dashDirection * dashDistance, 0); // 대시 속도 설정
+
+        yield return new WaitForSeconds(0.3f); // 대시 지속 시간
+
+        rigid.velocity = Vector2.zero; // 대시 종료 후 속도 초기화
+        rigid.gravityScale = originalGravity; // 원래 중력 값 복원
     }
 
     // 무적 모드 해제
