@@ -23,7 +23,15 @@ public class purple_slime_move : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+        //rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+        if (nextMove == 0)
+        {
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
+        }
+        else
+        {
+            rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+        }
 
         // 플랫폼 체크
         Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.2f, rigid.position.y);
@@ -41,6 +49,7 @@ public class purple_slime_move : MonoBehaviour
         // Update the sprite direction
         UpdateSpriteDirection();
     }
+
 
     // 행동지표 바꾸기, 재귀함수
     void Think()

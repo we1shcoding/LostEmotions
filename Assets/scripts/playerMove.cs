@@ -30,6 +30,12 @@ public class playerMove : MonoBehaviour
     //피격 중복방지
     private bool isHurt = false;
 
+    // 콤보 공격
+    private int comboStep = 0;
+    private float comboResetTime = 1f;
+    private float lastAttackTime;
+    int damages;
+
 
     void Awake()
     {
@@ -83,54 +89,8 @@ public class playerMove : MonoBehaviour
         else
             anim.SetBool("isWalking", true);
 
-        // 공격 모션
-        if (curTime <= 0)
-        {
-            if (Input.GetKey(KeyCode.Z))
-            {
-                //if문으로 horizontal 체크해서 반대편 만들면 될듯?
-                /*Vector2 posAttck;
-                if (Input.GetAxisRaw("Horizontal") == 1)
-                {
-                    posAttck = pos.position;
-                }
-                else
-                {
-                    posAttck = posLeft.position;
-                }*/
-
-                Vector2 posAttack = spriteRenderer.flipX ? pos.position : posLeft.position;
-
-                bool monsterInRange = false;
-
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(posAttack, boxSize, 0);
-                foreach (Collider2D collider in collider2Ds)
-                {
-                    if (collider.tag == "monster")
-                    {//random 함수로 데미지 1~4 랜덤 출력
-                        collider.GetComponent<purple_slime_move>().TakeDamage(Random.Range(1, 5));
-                        monsterInRange = true;
-                    }
-                }
-
-                //무적 적용
-                StartCoroutine(invincible());
-
-                //공격시 앞 대쉬 이동
-                if (!monsterInRange)
-                {
-                    StartCoroutine(Adash());
-                }
-
-
-                anim.SetTrigger("attack");
-                curTime = coolTime;
-            }
-        }
-        else
-        {
-            curTime -= Time.deltaTime;
-        }
+        //콤보 공격
+        HandleComboAttack();
     }
 
     private void OnDrawGizmos()
@@ -256,4 +216,63 @@ public class playerMove : MonoBehaviour
         spriteRenderer.color = new Color(1, 1, 1, 1);
         isHurt = false;
     }
+
+    //콤보
+    void HandleComboAttack()
+    {
+        float timeSinceLastAttack = Time.time - lastAttackTime;
+
+        if (timeSinceLastAttack > comboResetTime)
+        {
+            comboStep = 0;
+        }
+
+        if (curTime <= 0)
+        {
+            if (Input.GetKey(KeyCode.Z))
+            {
+                comboStep++;
+                lastAttackTime = Time.time;
+
+                if (comboStep > 2)
+                {
+                    comboStep = 1;
+                }
+
+                anim.SetInteger("ComboIndex", comboStep);
+
+                Vector2 posAttack = spriteRenderer.flipX ? pos.position : posLeft.position;
+                bool monsterInRange = false;
+
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(posAttack, boxSize, 0);
+                foreach (Collider2D collider in collider2Ds)
+                {
+                    if (collider.tag == "monster")
+                    {//콤보별로 데미지 바꾸려면 여기서 if문으로 하면 될듯...?
+                        if (comboStep == 1) damages = Random.Range(1, 5);
+                        else if (comboStep == 2) damages = Random.Range(3, 7);
+
+                        collider.GetComponent<purple_slime_move>().TakeDamage(damages);
+                        monsterInRange = true;
+                    }
+                }
+
+                StartCoroutine(invincible());
+
+                if (!monsterInRange && (comboStep==0 || comboStep==1)) 
+                {
+                    StartCoroutine(Adash());
+                }
+
+                anim.SetTrigger("attack");
+                curTime = coolTime;
+            }
+        }
+        else
+        {
+            curTime -= Time.deltaTime;
+        }
+    }
+
+
 }
