@@ -12,4 +12,11 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("LoginScene");
     }
+
+    public void OnExitButtonClick()
+    {
+        Application.Quit();
+        Debug.Log("꺼져");
+    }
+
 }

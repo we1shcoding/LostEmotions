@@ -23,6 +23,7 @@ public class LoginManager : MonoBehaviour
         StartCoroutine(Login(userIdInputField.text, passwordInputField.text));
     }
 
+
     private IEnumerator Login(string userId, string password)
     {
         // JSON 형식으로 데이터 준비
