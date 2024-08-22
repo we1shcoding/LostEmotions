@@ -20,22 +20,19 @@ public class purple_slime_move : MonoBehaviour
         // 재귀함수는 딜레이 없이 쓰면 위험해짐
         Invoke("Think", 3);
     }
+    private void Update()
+    {//애니메이션 fixedUpdate에서 물리이동이랑 같이 처리하면 딜레이 생겨서 여기에 작성함
+        anim.SetInteger("WalkSpeed", nextMove);
+        UpdateSpriteDirection();
+    }
 
     void FixedUpdate()
     {
-        //rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
-        if (nextMove == 0)
-        {
-            rigid.velocity = new Vector2(0, rigid.velocity.y);
-        }
-        else
-        {
-            rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
-        }
+        rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
         // 플랫폼 체크
         Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.2f, rigid.position.y);
-        Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
+        Debug.DrawRay(frontVec, Vector3.down, new Color(1, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
         if (rayHit.collider == null)
         {
@@ -47,7 +44,7 @@ public class purple_slime_move : MonoBehaviour
         }
 
         // Update the sprite direction
-        UpdateSpriteDirection();
+        //UpdateSpriteDirection();
     }
 
 
@@ -60,10 +57,10 @@ public class purple_slime_move : MonoBehaviour
         float nextThinkTime = Random.Range(2f, 5f);
         Invoke("Think", nextThinkTime);
 
-        anim.SetInteger("WalkSpeed", nextMove);
+        //anim.SetInteger("WalkSpeed", nextMove);
 
         // Update the sprite direction
-        UpdateSpriteDirection();
+        //UpdateSpriteDirection(); //update에서 매 프레임 불러오기 때문에 제거
     }
 
     void UpdateSpriteDirection()
@@ -71,9 +68,11 @@ public class purple_slime_move : MonoBehaviour
         // Flip the sprite based on the movement direction
         if (nextMove != 0)
         {
+            //Debug.Log(nextMove);
             Vector3 newScale = transform.localScale;
             newScale.x = Mathf.Abs(newScale.x) * (nextMove > 0 ? -1 : 1);
             transform.localScale = newScale;
+
         }
     }
 
@@ -87,6 +86,6 @@ public class purple_slime_move : MonoBehaviour
         GameObject hudText = Instantiate(hudDamageText);
         hudText.transform.position = hudPos.position;
         hudText.GetComponent<DamageText>().damage = damage;
-        Debug.Log(damage);
+        //Debug.Log(damage);
     }
 }
