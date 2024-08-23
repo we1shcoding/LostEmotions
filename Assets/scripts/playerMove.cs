@@ -34,7 +34,10 @@ public class playerMove : MonoBehaviour
     private int comboStep = 0;
     private float comboResetTime = 1f;
     private float lastAttackTime;
+    private bool atkButton;
+    private bool isAttacking;
     int damages;
+    
 
 
     void Awake()
@@ -47,7 +50,7 @@ public class playerMove : MonoBehaviour
     void Update()
     {
         // Jump
-        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))
+        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping") && !isAttacking)
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
@@ -70,7 +73,7 @@ public class playerMove : MonoBehaviour
         //    spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == 1;
 
         //방향전환 버튼 동시 눌림 방지
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal")&&!isAttacking)
         {
             if (Input.GetAxisRaw("Horizontal") == 1)
             {
@@ -91,6 +94,12 @@ public class playerMove : MonoBehaviour
 
         //콤보 공격
         HandleComboAttack();
+
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            atkButton = false;
+        }
+
     }
 
     private void OnDrawGizmos()
@@ -104,20 +113,26 @@ public class playerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move By Key Control
-        float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        
 
-        // Max Speed
-        if (!isDashing) // 대쉬 중이 아닐 때만 속도 제한 적용
+        if (!isAttacking)
         {
-            if (rigid.velocity.x > maxSpeed) // 오른쪽 맥스 스피드
+            // Move By Key Control
+            float h = Input.GetAxisRaw("Horizontal");
+            
+            rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+
+            // Max Speed
+            if (!isDashing) // 대쉬 중이 아닐 때만 속도 제한 적용
             {
-                rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
-            }
-            else if (rigid.velocity.x < maxSpeed * (-1)) // 왼쪽 맥스 스피드, 왼쪽이니까 -1로 곱함
-            {
-                rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
+                if (rigid.velocity.x > maxSpeed) // 오른쪽 맥스 스피드
+                {
+                    rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
+                }
+                else if (rigid.velocity.x < maxSpeed * (-1)) // 왼쪽 맥스 스피드, 왼쪽이니까 -1로 곱함
+                {
+                    rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
+                }
             }
         }
 
@@ -195,15 +210,16 @@ public class playerMove : MonoBehaviour
         isHurt = false;
     }
 
+    //공격대쉬
     IEnumerator Adash()
     {
         float dashDirection = spriteRenderer.flipX ? 1 : -1; // 대시 방향 설정
         float originalGravity = rigid.gravityScale; // 원래 중력 값 저장
         rigid.gravityScale = 0; // 대시 동안 중력 무시
-        float dashDistance = dashPower * 2;
+        float dashDistance = dashPower * 1;
         rigid.velocity = new Vector2(dashDirection * dashDistance, 0); // 대시 속도 설정
 
-        yield return new WaitForSeconds(0.3f); // 대시 지속 시간
+        yield return new WaitForSeconds(0.2f); // 대시 지속 시간
 
         rigid.velocity = Vector2.zero; // 대시 종료 후 속도 초기화
         rigid.gravityScale = originalGravity; // 원래 중력 값 복원
@@ -217,6 +233,7 @@ public class playerMove : MonoBehaviour
         isHurt = false;
     }
 
+
     //콤보
     void HandleComboAttack()
     {
@@ -229,8 +246,9 @@ public class playerMove : MonoBehaviour
 
         if (curTime <= 0)
         {
-            if (Input.GetKey(KeyCode.Z))
+            if (Input.GetKey(KeyCode.Z)&&!atkButton)
             {
+                atkButton = true;
                 comboStep++;
                 lastAttackTime = Time.time;
 
@@ -259,19 +277,27 @@ public class playerMove : MonoBehaviour
 
                 StartCoroutine(invincible());
 
-                if (!monsterInRange && (comboStep==0 || comboStep==1)) 
+                if (!monsterInRange && (comboStep==0 || comboStep==1)) //앞으로 치는 첫번째 공격에서만 대쉬
                 {
                     StartCoroutine(Adash());
                 }
 
                 anim.SetTrigger("attack");
                 curTime = coolTime;
+                
+                isAttacking = true;
             }
         }
         else
         {
             curTime -= Time.deltaTime;
         }
+
+        if (isAttacking && curTime <= 0)
+        {
+            isAttacking = false;
+        }
+        
     }
 
 
