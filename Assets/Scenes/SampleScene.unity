@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 192014731}
   m_Layer: 3
   m_Name: player2
-  m_TagString: Untagged
+  m_TagString: attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 597644729}
   m_Layer: 3
   m_Name: playerLeft
-  m_TagString: Untagged
+  m_TagString: attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -820,6 +820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextMove: 0
   Hp: 3
+  knockbackForce: 5
   hudDamageText: {fileID: 4574214761297949660, guid: 06a9840f7ba9d8546bac3cdb0f577b48, type: 3}
   hudPos: {fileID: 1834906123}
 --- !u!50 &598453515
@@ -997,6 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextMove: 0
   Hp: 3
+  knockbackForce: 5
   hudDamageText: {fileID: 0}
   hudPos: {fileID: 0}
 --- !u!1 &755331776

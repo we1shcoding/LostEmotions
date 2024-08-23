@@ -267,10 +267,12 @@ public class playerMove : MonoBehaviour
                 {
                     if (collider.tag == "monster")
                     {//콤보별로 데미지 바꾸려면 여기서 if문으로 하면 될듯...?
-                        if (comboStep == 1) damages = Random.Range(1, 5);
+                        if (comboStep == 1||comboStep==0) damages = Random.Range(1, 5);
                         else if (comboStep == 2) damages = Random.Range(3, 7);
 
-                        collider.GetComponent<purple_slime_move>().TakeDamage(damages);
+                        Vector2 direction = (collider.transform.position - transform.position).normalized;
+
+                        collider.GetComponent<purple_slime_move>().TakeDamage(damages, direction);
                         monsterInRange = true;
                     }
                 }
