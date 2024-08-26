@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class mainCamera : MonoBehaviour
 {
-    private Vector2 velocity;//¹éÅÍ°ªÀÌ³×
+    private Vector2 velocity;//ï¿½ï¿½ï¿½Í°ï¿½ï¿½Ì³ï¿½
 
     private float smoothTimeX;
     private float smoothTimeY;
 
-    public GameObject player;//µû¶ó°¥ ³ð
+    public GameObject player;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
     public bool bounds;
     private Vector3 minCameraPos;
     private Vector3 maxCameraPos;
 
-    //¹Ù¿îµå Ãß°¡¼³Á¤(X°ª)
-    //¹Ú½º ÄÃ¶óÀÌ´õ ¿µ¿ªÀÇ ÃÖ¼Ò ÃÖ´ë x°ª
-    //Ä«¸Þ¶óÀÇ x°ªÀÌ±â ¶§¹®¿¡ Áß½É ±âÁØ, µû¶ó¼­ Áß°£°ªÀÌ ÇÊ¿äÇÔ(¾ç ³¡Àº x°ª¿¡¼­ Áß°£°ªÀ» »©Áà¾ß ÇÔ)
+    //ï¿½Ù¿ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½(Xï¿½ï¿½)
+    //ï¿½Ú½ï¿½ ï¿½Ã¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½Ö´ï¿½ xï¿½ï¿½
+    //Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ xï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
     public BoxCollider2D bound;
 
     private float harfHeight;
@@ -44,7 +44,7 @@ public class mainCamera : MonoBehaviour
         transform.position = new Vector3(posX, posY, transform.position.z);
 
         if (bounds)
-        {//Mathf.Clamp(value,min,max)=Àû¿ë´ë»ó, ÃÖ¼Ò,ÃÖ´ë
+        {//Mathf.Clamp(value,min,max)=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ö¼ï¿½,ï¿½Ö´ï¿½
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, minCameraPos.x + harfWidth, maxCameraPos.x - harfWidth),
                 Mathf.Clamp(transform.position.y, 0, 0),
                 Mathf.Clamp(transform.position.z, -10, -10));
@@ -61,6 +61,6 @@ public class mainCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
