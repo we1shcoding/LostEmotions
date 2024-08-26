@@ -9,8 +9,7 @@ public class purple_slime_move : MonoBehaviour
     Animator anim;
     public int Hp;
     private bool isHit;
-    private bool isKnockback; // 넉백 상태를 추적하는 변수
-    public float knockbackForce = 10f; // 넉백 힘
+    public float knockbackForce; // 넉백 힘
 
     void Awake()
     {
@@ -31,7 +30,8 @@ public class purple_slime_move : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isHit && !isKnockback) { 
+        //Debug.Log(isKnockback);
+        if (!isHit && !anim.GetBool("damage")) {
             
             rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
@@ -47,9 +47,7 @@ public class purple_slime_move : MonoBehaviour
                 CancelInvoke();
                 Invoke("Think", 3);
             }
-        }
-            
-        
+        }        
         
     }
 
@@ -104,7 +102,6 @@ public class purple_slime_move : MonoBehaviour
     IEnumerator OnHit(Vector2 knockbackDirection)
     {
         isHit = true;
-        isKnockback = true;
 
         // isHit 파라미터를 true로 설정하여 피격 애니메이션으로 전환
         anim.SetBool("damage", true);
@@ -113,11 +110,11 @@ public class purple_slime_move : MonoBehaviour
         rigid.velocity = Vector2.zero; // 기존 속도 초기화
         rigid.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
 
-        isKnockback = false;
+        rigid.velocity = Vector2.zero;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         // 애니메이션을 원래 상태로 되돌림
         anim.SetBool("damage", false);

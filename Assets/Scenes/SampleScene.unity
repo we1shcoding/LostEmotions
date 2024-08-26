@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextMove: 0
-  Hp: 3
+  Hp: 50
   knockbackForce: 5
   hudDamageText: {fileID: 4574214761297949660, guid: 06a9840f7ba9d8546bac3cdb0f577b48, type: 3}
   hudPos: {fileID: 1834906123}
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextMove: 0
   Hp: 3
-  knockbackForce: 5
+  knockbackForce: 10
   hudDamageText: {fileID: 0}
   hudPos: {fileID: 0}
 --- !u!1 &755331776
