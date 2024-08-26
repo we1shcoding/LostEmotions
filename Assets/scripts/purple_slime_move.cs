@@ -80,7 +80,6 @@ public class purple_slime_move : MonoBehaviour
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
-        if (isHit) return;
         Hp -= damage;
         Debug.Log(Hp);
         GameObject hudText = Instantiate(hudDamageText);

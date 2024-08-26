@@ -48,6 +48,7 @@ public class mainCamera : MonoBehaviour
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, minCameraPos.x + harfWidth, maxCameraPos.x - harfWidth),
                 Mathf.Clamp(transform.position.y, 0, 0),
                 Mathf.Clamp(transform.position.z, -10, -10));
+
         }
     }
 
