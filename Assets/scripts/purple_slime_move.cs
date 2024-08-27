@@ -10,6 +10,7 @@ public class purple_slime_move : MonoBehaviour
     public int Hp;
     private bool isHit;
     public float knockbackForce; // 넉백 힘
+    public int rayLen;
 
     void Awake()
     {
@@ -38,7 +39,7 @@ public class purple_slime_move : MonoBehaviour
             // 플랫폼 체크
             Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.2f, rigid.position.y);
             Debug.DrawRay(frontVec, Vector3.down, new Color(1, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, rayLen, LayerMask.GetMask("Platform"));
         
             if (rayHit.collider == null)
             {
