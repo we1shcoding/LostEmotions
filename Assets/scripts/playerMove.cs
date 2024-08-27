@@ -210,20 +210,6 @@ public class playerMove : MonoBehaviour
         isHurt = false;
     }
 
-    //공격대쉬
-    IEnumerator Adash()
-    {
-        float dashDirection = spriteRenderer.flipX ? 1 : -1; // 대시 방향 설정
-        float originalGravity = rigid.gravityScale; // 원래 중력 값 저장
-        rigid.gravityScale = 0; // 대시 동안 중력 무시
-        float dashDistance = dashPower * 1;
-        rigid.velocity = new Vector2(dashDirection * dashDistance, 0); // 대시 속도 설정
-
-        yield return new WaitForSeconds(0.2f); // 대시 지속 시간
-
-        rigid.velocity = Vector2.zero; // 대시 종료 후 속도 초기화
-        rigid.gravityScale = originalGravity; // 원래 중력 값 복원
-    }
 
     // 무적 모드 해제
     void OffDamaged()
@@ -233,6 +219,29 @@ public class playerMove : MonoBehaviour
         isHurt = false;
     }
 
+    //공격 이동(앞)
+    IEnumerator MoveForwardDuringAttack()
+    {
+        // 플레이어가 이동할 거리
+        float moveDistance = 1.0f; // 이동하고 싶은 거리 설정
+        // 이동 속도
+        float moveSpeed = 5f; // 이동 속도 설정
+
+        // 캐릭터가 보는 방향을 체크
+        float direction = spriteRenderer.flipX ? 1 : -1;
+
+        float timeElapsed = 0f;
+
+        while (timeElapsed < moveDistance / moveSpeed)
+        {
+            // 시간에 따라 이동 (방향에 따라 이동)
+            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime * direction);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+    }
 
     //콤보
     void HandleComboAttack()
@@ -281,7 +290,8 @@ public class playerMove : MonoBehaviour
 
                 if (!monsterInRange && (comboStep==0 || comboStep==1)) //앞으로 치는 첫번째 공격에서만 대쉬
                 {
-                    StartCoroutine(Adash());
+                    //StartCoroutine(Adash());
+                    StartCoroutine(MoveForwardDuringAttack());
                 }
 
                 anim.SetTrigger("attack");
