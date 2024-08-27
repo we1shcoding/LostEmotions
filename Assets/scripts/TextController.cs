@@ -53,7 +53,9 @@ public class TextController : MonoBehaviour
         if (textBoxObject != null && roro != null)
         {
             Vector3 roroPosition = roro.transform.position;
-            textBoxObject.transform.position = new Vector3(roroPosition.x, roroPosition.y + textBoxOffsetY, textBoxObject.transform.position.z);
+            float newX = roroPosition.x - 0.5f; // TextBox를 왼쪽으로 1 단위 이동
+            float newY = roroPosition.y + 1.2f; // TextBox를 아래로 2 단위 이동
+            textBoxObject.transform.position = new Vector3(newX, newY, textBoxObject.transform.position.z);
         }
     }
 
