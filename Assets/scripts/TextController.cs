@@ -25,6 +25,7 @@ public class TextController : MonoBehaviour
 
     private Animator roroAnimator; // Animator 컴포넌트 참조
     private CanvasGroup canvasGroup; // CanvasGroup 참조
+    public SceneSwitcher sceneSwitcher;
 
     void Start()
     {
@@ -94,8 +95,19 @@ public class TextController : MonoBehaviour
         yield return StartCoroutine(MoveRoroY(-extendedMoveDistance3));
         yield return StartCoroutine(DisplayMessage("연구 대상 데려가겠습니다."));
 
-        // roro 애니메이션 재생
+        // roro 애니메이션 재생 후 LaboratoryScene으로 이동
         yield return StartCoroutine(PlayAnimation("PlayRoroDud", displayDelay3));
+
+        // LaboratoryScene으로 이동
+        if (sceneSwitcher != null)
+        {
+            sceneSwitcher.LaboratoryScence();
+        }
+        else
+        {
+            Debug.LogError("SceneSwitcher is not assigned.");
+        }
+
     }
 
     IEnumerator DisplayMessage(string message)

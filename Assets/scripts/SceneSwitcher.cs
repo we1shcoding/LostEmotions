@@ -12,6 +12,10 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("LoginScene");
     }
+    public void LaboratoryScence()
+    {
+        SceneManager.LoadScene("LaboratoryScene");
+    }
 
     public void OnExitButtonClick()
     {

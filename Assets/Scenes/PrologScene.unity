@@ -813,10 +813,12 @@ MonoBehaviour:
   extendedMoveDistance2: 3
   extendedMoveDistance3: 2
   extendedMoveDistance4: 1
+  extendedMoveDistance5: 6.5
   moveDuration: 3
   shakeDuration: 1
   textBoxObject: {fileID: 1925967353}
   textBoxOffsetY: 1
+  sceneSwitcher: {fileID: 0}
 --- !u!114 &1343398515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +835,50 @@ MonoBehaviour:
   textBox: {fileID: 1343398511}
   background: {fileID: 159696595}
   padding: 20
+--- !u!1 &1416648033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416648035}
+  - component: {fileID: 1416648034}
+  m_Layer: 0
+  m_Name: SceneSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1416648034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416648033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d7e8496daae1d41ba79245ad454101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1416648035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416648033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.031181581, y: 0.33951432, z: 0.0001791513}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1871238662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1077,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 547796585341120153, guid: a8264f0635f5f0d488fc0ec11059e14d, type: 3}
+      propertyPath: sceneSwitcher
+      value: 
+      objectReference: {fileID: 1416648034}
+    - target: {fileID: 547796585341120153, guid: a8264f0635f5f0d488fc0ec11059e14d, type: 3}
       propertyPath: textBoxObject
       value: 
       objectReference: {fileID: 1343398510}
@@ -1100,3 +1150,4 @@ SceneRoots:
   - {fileID: 7858376587475841572}
   - {fileID: 1142501383}
   - {fileID: 1002823006}
+  - {fileID: 1416648035}

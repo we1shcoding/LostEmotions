@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoginScene.unity
     guid: e807136035b127b40834e1a9ee9ff485
+  - enabled: 1
+    path: Assets/Scenes/PrologScene.unity
+    guid: ad50eaf4089a48c48bc626acbcd92813
+  - enabled: 1
+    path: Assets/Scenes/LaboratoryScene.unity
+    guid: b1f5ff63c4bbef34da0a6f37db542cf9
   m_configObjects: {}
