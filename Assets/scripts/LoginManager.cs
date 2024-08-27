@@ -42,7 +42,7 @@ public class LoginManager : MonoBehaviour
         {
             if (request.downloadHandler.text == "Login successful")
             {
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("PrologScene");
             }
             else
             {
