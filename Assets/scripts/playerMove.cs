@@ -281,8 +281,21 @@ public class playerMove : MonoBehaviour
 
                         Vector2 direction = (collider.transform.position - transform.position).normalized;
 
-                        collider.GetComponent<purple_slime_move>().TakeDamage(damages, direction);
-                        monsterInRange = true;
+                        purple_slime_move purpleSlime = collider.GetComponent<purple_slime_move>();
+                        green_monster greenMonster = collider.GetComponent<green_monster>();
+
+                        if (purpleSlime != null)
+                        {
+                            purpleSlime.TakeDamage(damages, direction);
+                            monsterInRange = true;
+                        }
+                        
+                        if (greenMonster != null)
+                        {
+                            greenMonster.TakeDamage(damages, direction);
+                            monsterInRange = true;
+                        }
+                        //monsterInRange = true;
                     }
                 }
 

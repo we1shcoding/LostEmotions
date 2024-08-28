@@ -10,6 +10,7 @@ public class green_monster : MonoBehaviour
     public int Hp;
     private bool isHit;
     public float knockbackForce; // 넉백 힘
+    public int rayLen;//레이저 길이
 
     void Awake()
     {
@@ -39,7 +40,7 @@ public class green_monster : MonoBehaviour
             // 플랫폼 체크
             Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.2f, rigid.position.y);
             Debug.DrawRay(frontVec, Vector3.down, new Color(1, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 2, LayerMask.GetMask("Platform"));//몬스터 크기가 달라서 레이 길이 늘림
+            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, rayLen, LayerMask.GetMask("Platform"));
 
             if (rayHit.collider == null)
             {
@@ -91,11 +92,14 @@ public class green_monster : MonoBehaviour
         if (Hp <= 0)
         {
             Debug.Log("moster die");
-            //애니메이팅 바꾸거나 시간차 주고싶으면 이 위치에 코드 추가
-            Destroy(this.gameObject);
+            StartCoroutine(Die());
+        }
+        else
+        {
+            StartCoroutine(OnHit(knockbackDirection));
         }
 
-        StartCoroutine(OnHit(knockbackDirection));
+        
 
     }
 
@@ -120,5 +124,17 @@ public class green_monster : MonoBehaviour
         anim.SetBool("damage", false);
 
         isHit = false;
+    }
+
+    IEnumerator Die()
+    {
+        // 죽는 애니메이션 트리거 설정
+        anim.SetTrigger("Die");
+
+        // 애니메이션 길이만큼 대기
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        // 오브젝트 파괴
+        Destroy(this.gameObject);
     }
 }

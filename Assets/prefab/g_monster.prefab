@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextMove: 0
   Hp: 80
-  knockbackForce: 3
+  knockbackForce: 4
   rayLen: 2
   hudDamageText: {fileID: 4574214761297949660, guid: 06a9840f7ba9d8546bac3cdb0f577b48, type: 3}
   hudPos: {fileID: 7008643435427782180}
@@ -199,7 +199,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &8450175604076090901
 GameObject:
   m_ObjectHideFlags: 0
