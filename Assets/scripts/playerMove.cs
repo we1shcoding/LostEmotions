@@ -12,6 +12,7 @@ public class playerMove : MonoBehaviour
     // 플레이어 속도, 점프
     public float maxSpeed;
     public float jumpPower;
+    public float rayLen;
 
     // 대쉬
     public float dashPower; // 대쉬 파워 추가
@@ -45,6 +46,7 @@ public class playerMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        //rayLen = 1.5f * transform.localScale.y;
     }
 
     void Update()
@@ -139,8 +141,8 @@ public class playerMove : MonoBehaviour
         // Landing Platform
         if (rigid.velocity.y < 0)
         {
-            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(1, 0, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, rayLen, LayerMask.GetMask("Platform"));
 
             if (rayHit.collider != null)
             {
