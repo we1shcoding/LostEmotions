@@ -944,8 +944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d7e8496daae1d41ba79245ad454101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeCanvasGroup: {fileID: 1329524217}
-  fadeDuration: 1
 --- !u!1 &1343398510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,8 +1067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d7e8496daae1d41ba79245ad454101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeCanvasGroup: {fileID: 1329524217}
-  fadeDuration: 1
 --- !u!4 &1416648035
 Transform:
   m_ObjectHideFlags: 0
