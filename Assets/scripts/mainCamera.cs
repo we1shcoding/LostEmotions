@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class mainCamera : MonoBehaviour
 {
-    private Vector2 velocity;//���Ͱ��̳�
+    private Vector2 velocity;
 
-    private float smoothTimeX;
-    private float smoothTimeY;
+    public float smoothTimeX = 0.3f;
+    public float smoothTimeY = 0.3f;
 
-    public GameObject player;//���� ��
+    public GameObject player;
 
     public bool bounds;
     private Vector3 minCameraPos;
     private Vector3 maxCameraPos;
 
-    //�ٿ�� �߰�����(X��)
-    //�ڽ� �ö��̴� ������ �ּ� �ִ� x��
-    //ī�޶��� x���̱� ������ �߽� ����, ���� �߰����� �ʿ���(�� ���� x������ �߰����� ����� ��)
     public BoxCollider2D bound;
 
     private float harfHeight;
@@ -34,21 +31,23 @@ public class mainCamera : MonoBehaviour
         maxCameraPos = bound.bounds.max;
         harfHeight = theCamera.orthographicSize;
         harfWidth = harfHeight * Screen.width / Screen.height;
-
     }
+
     void FixedUpdate()
     {
-        float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
-        float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
+        if (player != null)
+        {
+            float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
+            float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
 
-        transform.position = new Vector3(posX, posY, transform.position.z);
+            transform.position = new Vector3(posX, posY, transform.position.z);
 
-        if (bounds)
-        {//Mathf.Clamp(value,min,max)=������, �ּ�,�ִ�
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, minCameraPos.x + harfWidth, maxCameraPos.x - harfWidth),
-                Mathf.Clamp(transform.position.y, 0, 0),
-                Mathf.Clamp(transform.position.z, -10, -10));
-
+            if (bounds)
+            {
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x, minCameraPos.x + harfWidth, maxCameraPos.x - harfWidth),
+                    Mathf.Clamp(transform.position.y, 0, 0),
+                    Mathf.Clamp(transform.position.z, -10, -10));
+            }
         }
     }
 
@@ -65,3 +64,4 @@ public class mainCamera : MonoBehaviour
 
     }
 }
+

@@ -558,6 +558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28405f702e458054290730923c7db9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothTimeX: 0.3
+  smoothTimeY: 0.3
   player: {fileID: 158234248}
   bounds: 1
   bound: {fileID: 1002823007}
@@ -1003,25 +1005,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e330255e3726c488203d8f74e4b5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiText: {fileID: 675291594}
-  displayDelay: 3
-  displayDelay2: 2
-  displayDelay3: 1
-  typingSpeed: 0.05
+  textComponent: {fileID: 675291594}
   autoSizeTextBox: {fileID: 1343398515}
-  roro: {fileID: 158234248}
-  moveDistance: 1
-  extendedMoveDistance: 6
-  extendedMoveDistance1: 4
-  extendedMoveDistance2: 3
-  extendedMoveDistance3: 2
-  extendedMoveDistance4: 1
-  extendedMoveDistance5: 6.5
-  moveDuration: 3
-  shakeDuration: 1
-  textBoxObject: {fileID: 1925967353}
-  textBoxOffsetY: 1
-  sceneSwitcher: {fileID: 0}
+  textChangeInterval: 3
 --- !u!114 &1343398515
 MonoBehaviour:
   m_ObjectHideFlags: 0
