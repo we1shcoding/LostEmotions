@@ -706,10 +706,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roroTransform: {fileID: 22542258}
-  followSpeed: 0.15
+  followSpeed: 0
   center: {x: 344, y: -18.3}
   size: {x: 1376, y: 512.8}
-  maxDistance: 3
+  maxDistance: 5
 --- !u!1 &862929119
 GameObject:
   m_ObjectHideFlags: 0
