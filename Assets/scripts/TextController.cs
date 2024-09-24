@@ -43,7 +43,7 @@ public class TextController : MonoBehaviour
         background.SetActive(false); // Background 비활성화
 
         // 텍스트 박스 부모를 roroTransform에 설정
-        textComponent.transform.parent.parent = roroTransform;
+        //textComponent.transform.parent.parent = roroTransform;
 
         StartCoroutine(ChangeDialogueRoutine()); // 대사 변경 코루틴 시작
     }
@@ -77,7 +77,13 @@ public class TextController : MonoBehaviour
             autoSizeTextBox.textBox.localPosition = localPoint;
 
             // 대사 시간 동안 대기
-            yield return new WaitForSeconds(dialogueDurations[currentDialogueIndex]);
+            int count = 0;
+            while(count < dialogueDurations[currentDialogueIndex] * 100)
+            {
+                Vector3 screenPoint = Camera.main.WorldToScreenPoint(roroTransform.position);
+                textComponent.transform.parent.position = screenPoint - new Vector3(Screen.width / 2, Screen.height / 2, 0);
+                yield return new WaitForSeconds(0.01f);
+            }
 
             // 텍스트 박스와 배경 비활성화
             textComponent.gameObject.SetActive(false);
