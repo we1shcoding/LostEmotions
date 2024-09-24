@@ -29,9 +29,6 @@ public class roroCamera : MonoBehaviour
         {
             // roro의 위치에 따라 카메라의 목표 위치 계산 (화면 크기와 관계없이 roro를 바로 따라감)
             Vector3 targetPosition = new Vector3(roroTransform.position.x, roroTransform.position.y, -10f);
-            // roro의 위치에 따라 카메라의 목표 위치 계산
-            Vector3 targetPosition = new Vector3(roroTransform.position.x - Screen.width * (this.transform.position.x / width), 
-                roroTransform.position.y - Screen.height * (this.transform.position.y / height), -10f);
 
             // 카메라가 roro와의 거리가 너무 멀어지지 않도록 제한
             float distance = Vector3.Distance(transform.position, targetPosition);
