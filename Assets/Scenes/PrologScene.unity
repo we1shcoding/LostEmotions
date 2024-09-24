@@ -903,8 +903,8 @@ MonoBehaviour:
   autoSizeTextBox: {fileID: 892896398}
   roroTransform: {fileID: 806410081}
   canvas: {fileID: 740909127}
-  textChangeInterval: 3
-  verticalOffset: 50
+  background: {fileID: 0}
+  initialWaitTime: 5
 --- !u!114 &892896398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,8 +1375,8 @@ MonoBehaviour:
   autoSizeTextBox: {fileID: 1343398515}
   roroTransform: {fileID: 0}
   canvas: {fileID: 0}
-  textChangeInterval: 3
-  verticalOffset: 50
+  background: {fileID: 0}
+  initialWaitTime: 5
 --- !u!114 &1343398515
 MonoBehaviour:
   m_ObjectHideFlags: 0
