@@ -1136,7 +1136,7 @@ MonoBehaviour:
   roroTransform: {fileID: 22542258}
   canvas: {fileID: 1747314141}
   background: {fileID: 829943479}
-  initialWaitTime: 5
+  initialWaitTime: 7
 --- !u!114 &1145464616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,6 +1689,10 @@ PrefabInstance:
       propertyPath: autoSizeTextBox
       value: 
       objectReference: {fileID: 1648292013}
+    - target: {fileID: 547796585341120153, guid: a8264f0635f5f0d488fc0ec11059e14d, type: 3}
+      propertyPath: initialWaitTime
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4447972290825327191, guid: a8264f0635f5f0d488fc0ec11059e14d, type: 3}
       propertyPath: m_Name
       value: TextController

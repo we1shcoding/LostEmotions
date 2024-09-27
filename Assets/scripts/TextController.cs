@@ -10,7 +10,7 @@ public class TextController : MonoBehaviour
     public Transform roroTransform; // roro의 Transform
     public Canvas canvas; // UI가 표시되는 캔버스
     public GameObject background; // Background UI 오브젝트
-    public float initialWaitTime = 5f; // 시작 후 대사 출력 전 대기 시간
+    public float initialWaitTime; // 시작 후 대사 출력 전 대기 시간
 
     private string[] dialogues = new string[] {
         "...폐기물 더미 내\n수집 요소 분석중",
@@ -25,7 +25,7 @@ public class TextController : MonoBehaviour
     };
 
     private float[] dialogueDurations = new float[] {
-        4f, 5.5f, 8f, 4f, 2f, 3f, 2f, 2f, 2f
+        3f, 4f, 7f, 3f, 2f, 3f, 2f, 2f, 2f
     };
 
     private int currentDialogueIndex = 0; // 현재 대사 인덱스
@@ -78,7 +78,7 @@ public class TextController : MonoBehaviour
 
             // 대사 시간 동안 대기
             int count = 0;
-            while(count < dialogueDurations[currentDialogueIndex] * 100)
+            while (count < dialogueDurations[currentDialogueIndex] * 100)
             {
                 Vector3 screenPoint = Camera.main.WorldToScreenPoint(roroTransform.position + new Vector3(-40, 100, 0));
                 textComponent.transform.parent.position = screenPoint;
