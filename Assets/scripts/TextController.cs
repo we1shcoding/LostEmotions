@@ -80,9 +80,10 @@ public class TextController : MonoBehaviour
             int count = 0;
             while(count < dialogueDurations[currentDialogueIndex] * 100)
             {
-                Vector3 screenPoint = Camera.main.WorldToScreenPoint(roroTransform.position);
-                textComponent.transform.parent.position = screenPoint - new Vector3(Screen.width / 2, Screen.height / 2, 0);
+                Vector3 screenPoint = Camera.main.WorldToScreenPoint(roroTransform.position + new Vector3(-40, 100, 0));
+                textComponent.transform.parent.position = screenPoint;
                 yield return new WaitForSeconds(0.01f);
+                count++;
             }
 
             // 텍스트 박스와 배경 비활성화
