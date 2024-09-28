@@ -94,8 +94,8 @@ public class TextController : MonoBehaviour
             currentDialogueIndex++;
         }
 
-        // 마지막 대사 후 2초 대기 후 씬 전환
-        yield return new WaitForSeconds(2f);
+        // 마지막 대사 후 1.5초 대기 후 씬 전환
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("LaboratoryScene");
     }
 }
