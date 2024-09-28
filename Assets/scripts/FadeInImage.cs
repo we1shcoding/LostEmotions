@@ -1,19 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-public class FadeOutImage : MonoBehaviour
+public class FadeInImage : MonoBehaviour
 {
     public Image blackImage;  // 검정색으로 채워진 이미지
     public float fadeDuration = 2.0f;  // 페이드 아웃이 일어나는 시간 (초)
     public float waitTime = 10.0f;  // 페이드가 시작되기 전에 대기할 시간 (초)
 
-    private void Start()
+    //private void Start()
+    //{
+    //    // 시작 시 코루틴 호출
+    //    StartCoroutine(FadeIn());
+    //}
+
+    public void FadeInEffect()
     {
-        // 시작 시 코루틴 호출
-        StartCoroutine(FadeOut());
+        StartCoroutine(FadeIn());
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator FadeIn()
     {
         // 페이드 시작 전에 대기
         yield return new WaitForSeconds(waitTime);

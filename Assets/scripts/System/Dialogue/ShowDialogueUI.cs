@@ -14,7 +14,8 @@ public class ShowDialogueUI : MonoBehaviour
 
     [SerializeField]
     private GameObject dialogueUI;
-
+    
+    private GameManager gameManager;
     private StringBuilder stringBuilder = new StringBuilder();
     private Queue<DialogueData> dialogues;
     // 타이핑 애니메이션 핸들링을 위한 변수
@@ -25,6 +26,7 @@ public class ShowDialogueUI : MonoBehaviour
     #region Unity Callback Methods
     void Start()
     {
+        gameManager = GetComponent<GameManager>();
         ShowDialogue();
     }
     #endregion
@@ -75,6 +77,7 @@ public class ShowDialogueUI : MonoBehaviour
             {
                 yield return new WaitForSeconds(textDelay);
                 if (!isAnimated) { break; }
+                if(letter.Equals('.')) { yield return new WaitForSeconds(textDelay); }
                 stringBuilder.Append(letter);
                 contentTextMesh.text = stringBuilder.ToString();
             }
@@ -94,6 +97,9 @@ public class ShowDialogueUI : MonoBehaviour
 
             // for문이 다시 시작될 때 마우스 클릭 연속 감지를 방지하기 위한 딜레이
             yield return null;
+
+            // 게임 메니저의 다이얼로그 이벤트 카운트 증가
+            gameManager.AddCount();
         }
 
         Destroy(UI);
