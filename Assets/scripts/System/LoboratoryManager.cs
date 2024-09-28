@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class LoboratoryManager : MonoBehaviour, GameManageable
 {
     /** ---         Fields          ----- */
     #region Fields
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     #endregion
 
@@ -38,20 +38,20 @@ public class GameManager : MonoBehaviour
     {
         lineIndex++;
 
-        switch(dialogueIndex)
+        switch (dialogueIndex)
         {
             case 1:
                 switch (lineIndex)
                 {
                     case 11:
-                        StartCoroutine(FadeInScreen());    
+                        StartCoroutine(FadeInScreen());
                         break;
                 }
                 break;
 
             case 2:
                 switch (lineIndex)
-                {            
+                {
                     case 2: break;
                 }
                 break;
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        GetComponent<ShowDialogueUI>().ShowDialogue(dialogueIndex);
+        GetComponent<ShowDialogueUI>().ShowDialogue(dialogueIndex, this);
     }
     #endregion
 

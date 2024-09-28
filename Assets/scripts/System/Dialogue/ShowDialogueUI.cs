@@ -15,7 +15,7 @@ public class ShowDialogueUI : MonoBehaviour
     [SerializeField]
     private GameObject dialogueUI;
     
-    private GameManager gameManager;
+    private GameManageable gameManager;
     private StringBuilder stringBuilder = new StringBuilder();
     private Queue<DialogueData> dialogues;
     // 타이핑 애니메이션 핸들링을 위한 변수
@@ -26,14 +26,15 @@ public class ShowDialogueUI : MonoBehaviour
     #region Unity Callback Methods
     void Start()
     {
-        gameManager = GetComponent<GameManager>();
+
     }
     #endregion
 
     /** ---         Methods         ----- */
     #region Methods
-    public void ShowDialogue(int index)
+    public void ShowDialogue(int index, GameManageable gameManageable)
     {
+        gameManager = gameManageable;
         DialogueDataSwitchable dialogueDataSwitchable = new SwitchFileToObject();
         dialogues = dialogueDataSwitchable.SwitchData(index);
 
@@ -76,7 +77,8 @@ public class ShowDialogueUI : MonoBehaviour
             {
                 yield return new WaitForSeconds(textDelay);
                 if (!isAnimated) { break; }
-                if(letter.Equals('.')) { yield return new WaitForSeconds(textDelay); }
+                // 온점 출력 시 딜레이 추가
+                if(letter.Equals('.')) { yield return new WaitForSeconds(textDelay * 2); }
                 stringBuilder.Append(letter);
                 contentTextMesh.text = stringBuilder.ToString();
             }
