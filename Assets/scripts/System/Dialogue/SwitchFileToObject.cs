@@ -17,7 +17,7 @@ public class SwitchFileToObject : DialogueDataSwitchable
         string sceneName = SceneManager.GetActiveScene().name;
         string[] data = File.ReadAllLines(filePath + sceneName + fileExtension);
 
-        for(int i = 0; i < data.Length; i++)
+        for (int i = 0; i < data.Length; i++)
         {
             string[] values = data[i].Split('\t');
             DialogueData dialogueData = ScriptableObject.CreateInstance<DialogueData>();

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public static class CharacterSpriteAddresses
 {
-    // Ä³¸¯ÅÍ ÀÌ¸§ - Ä³¸¯ÅÍ ½ºÇÁ¶óÀÌÆ® ÁÖ¼Ò
+    // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ - Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ö¼ï¿½
     private static readonly Dictionary<string, string> spriteAddress = new Dictionary<string, string>
     {
-        {"A", "Character/TestImage" }
+        {"A", "Character/TestImage" },
+        {"???", "Character/TestImage2"},
+        {"í•˜ë‹ˆ", "Character/TestImage2"}
     };
 
-    // ÀÌ¸§À¸·Î °Ë»öÇØ¼­ ½ºÇÁ¶óÀÌÆ® ÁÖ¼Ò ¹ÝÈ¯
+    // ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ö¼ï¿½ ï¿½ï¿½È¯
     public static string GetSpriteAddress(string name)
     {
         if (spriteAddress.TryGetValue(name, out string address))
