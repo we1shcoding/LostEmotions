@@ -27,16 +27,15 @@ public class ShowDialogueUI : MonoBehaviour
     void Start()
     {
         gameManager = GetComponent<GameManager>();
-        ShowDialogue();
     }
     #endregion
 
     /** ---         Methods         ----- */
     #region Methods
-    public void ShowDialogue()
+    public void ShowDialogue(int index)
     {
         DialogueDataSwitchable dialogueDataSwitchable = new SwitchFileToObject();
-        dialogues = dialogueDataSwitchable.SwitchData();
+        dialogues = dialogueDataSwitchable.SwitchData(index);
 
         StartCoroutine(ShowUI());
     }
@@ -99,9 +98,10 @@ public class ShowDialogueUI : MonoBehaviour
             yield return null;
 
             // 게임 메니저의 다이얼로그 이벤트 카운트 증가
-            gameManager.AddCount();
+            gameManager.AddLineIndex();
         }
 
+        gameManager.AddDialogueIndex();
         Destroy(UI);
     }
 

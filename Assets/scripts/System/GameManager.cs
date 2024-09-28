@@ -5,17 +5,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int count = 0;
+    /** ---         Fields          ----- */
+    #region Fields
+    private int dialogueIndex = 1;
+    private int lineIndex = 1;
     [SerializeField]
     private GameObject player;
     [SerializeField]
     private AnimatorController[] playerAnimation;
     [SerializeField]
     private FadeInImage fadeInImage;
+    #endregion
+
+    /** --- Unity Callback Methods  ----- */
+    #region Unity Callback Methods
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartDialogue();
     }
 
     // Update is called once per frame
@@ -23,19 +30,55 @@ public class GameManager : MonoBehaviour
     {
         
     }
+    #endregion
 
-    public void AddCount()
+    /** ---         Methods         ----- */
+    #region Methods
+    public void AddLineIndex()
     {
-        count++;
+        lineIndex++;
 
-        switch(count)
+        switch(dialogueIndex)
         {
-            case 10:
-                fadeInImage.FadeInEffect();
+            case 1:
+                switch (lineIndex)
+                {
+                    case 11:
+                        StartCoroutine(FadeInScreen());    
+                        break;
+                }
                 break;
-            case 11: 
-                player.transform.GetComponent<Animator>().runtimeAnimatorController = playerAnimation[0]; 
+
+            case 2:
+                switch (lineIndex)
+                {            
+                    case 2: break;
+                }
                 break;
         }
     }
+
+    public void AddDialogueIndex()
+    {
+        dialogueIndex++;
+        lineIndex = 1;
+    }
+
+    public void StartDialogue()
+    {
+        GetComponent<ShowDialogueUI>().ShowDialogue(dialogueIndex);
+    }
+    #endregion
+
+    /** ---         Coroutine       ----- */
+    #region Coroutine
+    IEnumerator FadeInScreen()
+    {
+        fadeInImage.FadeInEffect();
+        yield return new WaitForSeconds(2f);
+        player.transform.GetComponent<Animator>().runtimeAnimatorController = playerAnimation[0];
+        yield return new WaitForSeconds(1.5f);
+        StartDialogue();
+    }
+    #endregion
 }

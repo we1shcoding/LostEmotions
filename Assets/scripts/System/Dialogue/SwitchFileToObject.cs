@@ -10,13 +10,14 @@ using UnityEngine.SceneManagement;
 public class SwitchFileToObject : DialogueDataSwitchable
  
 {
-    public Queue<DialogueData> SwitchData()
+    public Queue<DialogueData> SwitchData(int count)
     {
         Queue<DialogueData> dialogues = new Queue<DialogueData>();
         string filePath = "Assets/DialogueData/";
+        string dialogueNumber = count.ToString("D3");
         string fileExtension = ".txt";
         string sceneName = SceneManager.GetActiveScene().name;
-        string[] data = File.ReadAllLines(filePath + sceneName + fileExtension);
+        string[] data = File.ReadAllLines(filePath + sceneName + dialogueNumber + fileExtension);
        
 
         for (int i = 0; i < data.Length; i++)
