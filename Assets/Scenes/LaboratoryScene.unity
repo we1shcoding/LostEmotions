@@ -618,6 +618,16 @@ MonoBehaviour:
   player: {fileID: 1505993730}
   playerAnimation:
   - {fileID: 9100000, guid: ed4af3aa86106cb4ea9ee7c1b5188ad6, type: 2}
+  - {fileID: 9100000, guid: 48edd87f4047ea149af094b1ad352f1b, type: 2}
+  - {fileID: 9100000, guid: 196ab21a325b4e348b44fc2d1b41ab20, type: 2}
+  hany: {fileID: 699399554}
+  hanyAnimation:
+  - {fileID: 9100000, guid: 1bdc5c82d5bd0be4c8b0a14599100a92, type: 2}
+  - {fileID: 9100000, guid: 9fd9619c3f50c174c903a8f7112a29ba, type: 2}
+  - {fileID: 9100000, guid: 4ba4808510500e247ba5e53a7522b98f, type: 2}
+  robot: {fileID: 365628807}
+  robotAnimation:
+  - {fileID: 9100000, guid: 57b9d87a14415d645bc55caf8a7f293e, type: 2}
   fadeInImage: {fileID: 262310648}
 --- !u!4 &568991158
 Transform:

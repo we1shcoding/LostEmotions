@@ -14,6 +14,14 @@ public class LoboratoryManager : MonoBehaviour, GameManageable
     [SerializeField]
     private AnimatorController[] playerAnimation;
     [SerializeField]
+    private GameObject hany;
+    [SerializeField]
+    private AnimatorController[] hanyAnimation;
+    [SerializeField]
+    private GameObject robot;
+    [SerializeField]
+    private AnimatorController[] robotAnimation;
+    [SerializeField]
     private FadeInImage fadeInImage;
     #endregion
 
@@ -52,7 +60,18 @@ public class LoboratoryManager : MonoBehaviour, GameManageable
             case 2:
                 switch (lineIndex)
                 {
-                    case 2: break;
+                    case 2:
+                        player.transform.GetComponent<Animator>().runtimeAnimatorController = playerAnimation[1];
+                        break;
+                    case 3:
+                        player.transform.GetComponent<Animator>().runtimeAnimatorController = playerAnimation[2];
+                        break;
+                    case 9:
+                        robot.transform.GetComponent<Animator>().runtimeAnimatorController = robotAnimation[0];
+                        break;
+                    case 10:
+                        hany.transform.GetComponent<Animator>().runtimeAnimatorController= hanyAnimation[1];
+                        break;
                 }
                 break;
         }
