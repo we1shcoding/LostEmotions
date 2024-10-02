@@ -9,6 +9,7 @@ TagManager:
   - attack
   - roro
   - background
+  - Note
   layers:
   - Default
   - TransparentFX
