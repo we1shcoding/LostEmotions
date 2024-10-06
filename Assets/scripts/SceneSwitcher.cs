@@ -17,6 +17,11 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene("LaboratoryScene");
     }
 
+    public void PrologScene2()
+    {
+        SceneManager.LoadScene("PrologScene2");
+    }
+
     public void OnExitButtonClick()
     {
         Application.Quit();
