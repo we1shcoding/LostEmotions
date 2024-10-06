@@ -7,7 +7,8 @@ public static class CharacterSpriteAddresses
     // ĳ���� �̸� - ĳ���� ��������Ʈ �ּ�
     private static readonly Dictionary<string, string> spriteAddress = new Dictionary<string, string>
     {
-        {"A", "Character/TestImage" },
+        {"나", "Character/TestImage" },
+        {"유진", "Character/TestImage"},
         {"누군가의 목소리", "Character/TestImage3"},
         {"???", "Character/TestImage2"},
         {"하니", "Character/TestImage2"}
