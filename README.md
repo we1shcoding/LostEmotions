@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/4c2184d8-e636-4c74-a37b-833dac3793ee
 # LOST EMOTIONS
 
 > **2024.08 ~ 2024.11 | 비상업적 취미 팀 프로젝트 | 개발 중단**  
