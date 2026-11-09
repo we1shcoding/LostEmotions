@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/4c2184d8-e636-4c74-a37b-833dac3793ee
 # LOST EMOTIONS
 
 > **2024.08 ~ 2024.11 | 비상업적 취미 팀 프로젝트 | 개발 중단**  
@@ -76,11 +78,9 @@ LOST EMOTIONS (잃어버린 감정)는 감정을 잃어버린 미래 한국을 �
 
 ## 시연 영상
 
-[2024년 8월 27일 촬영한 초기 버전의 타이틀·프롤로그 연출 영상]입니다. 캐릭터 이동이나 전투 전체 기능의 시연 영상은 아닙니다.
+2024년 8월 27일 촬영한 초기 버전의 타이틀·프롤로그 연출 영상입니다. (약 1분)
 
-[▶ 초기 프롤로그 시연 영상 보기 (약 1분)](docs/videos/prologue_demo.mp4)
-
-![프롤로그 연출 장면](docs/images/prologue_preview.jpg)
+https://github.com/user-attachments/assets/17601c22-df1b-4298-a8ea-3a28161b4c60
 
 ## 담당 업무
 
