@@ -78,7 +78,7 @@ LOST EMOTIONS (잃어버린 감정)는 감정을 잃어버린 미래 한국을 �
 
 [2024년 8월 27일 촬영한 초기 버전의 타이틀·프롤로그 연출 영상]입니다. 캐릭터 이동이나 전투 전체 기능의 시연 영상은 아닙니다.
 
-[▶ 초기 프롤로그 시연 영상 보기 (약 46초)](docs/videos/prologue_demo.mp4)
+[▶ 초기 프롤로그 시연 영상 보기 (약 1분)](docs/videos/prologue_demo.mp4)
 
 ![프롤로그 연출 장면](docs/images/prologue_preview.jpg)
 
