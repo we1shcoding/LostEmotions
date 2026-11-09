@@ -18,9 +18,65 @@ LOST EMOTIONS (잃어버린 감정)는 감정을 잃어버린 미래 한국을 �
 | 협업 분야 | 개발 · 기획 · 캐릭터/배경 디자인 · 음악/효과음 |
 | 진행 상태 | 개발 중단 (2024.11) |
 
+## 등장인물 소개
+
+게임의 주요 등장인물과 당시 제작한 콘셉트 아트·도트 애니메이션입니다. 아래 이미지는 **팀 프로젝트의 공동 제작 리소스**이며, 개인이 모든 그림을 제작했다는 의미는 아닙니다.
+
+### 주인공
+
+[기억과 감정을 되찾기 위해 여행하는 18세 소녀] 힘과 정의감이 강하며, 감정이 사라진 세계에서 자신의 정체를 찾기 위한 여정을 이어갑니다.
+
+<table>
+<tr>
+<td align="center"><img src="docs/images/characters/hero_concept.png" width="185" alt="주인공 콘셉트 아트"/><br/><sub>캐릭터 콘셉트</sub></td>
+<td align="center"><img src="docs/images/characters/hero_idle.gif" width="185" alt="주인공 기본 동작"/><br/><sub>기본 모션</sub></td>
+<td align="center"><img src="docs/images/characters/hero_run.gif" width="185" alt="주인공 달리기 애니메이션"/><br/><sub>달리기</sub></td>
+<td align="center"><img src="docs/images/characters/hero_attack.gif" width="185" alt="주인공 공격 애니메이션"/><br/><sub>공격 모션</sub></td>
+</tr>
+</table>
+
+### 하니 박사 — 조력자
+
+연구에 몰두하는 피곤한 인상의 박사입니다. 주인공이 기억을 되찾는 여정에서 연구와 발명품을 통해 도움을 주는 인물입니다.
+
+<table>
+<tr>
+<td align="center"><img src="docs/images/characters/hany_concept.png" width="175" alt="하니 박사 콘셉트"/><br/><sub>캐릭터 콘셉트</sub></td>
+<td align="center"><img src="docs/images/characters/hany_idle.png" width="175" alt="하니 박사 도트 기본"/><br/><sub>기본 도트</sub></td>
+<td align="center"><img src="docs/images/characters/hany_pose.png" width="175" alt="하니 박사 도트 표정"/><br/><sub>추가 모션</sub></td>
+<td align="center"><img src="docs/images/characters/hany_animation.gif" width="175" alt="하니 박사 애니메이션"/><br/><sub>애니메이션</sub></td>
+</tr>
+</table>
+
+### 아루프 — 조력자의 로봇
+
+하니 박사가 제작한 로봇으로, **게임 세계관상 AI가 탑재된 존재**입니다. 연구실에서 하니를 돕고 주인공의 모험에 동행하도록 설정했습니다.
+
+<table>
+<tr>
+<td align="center"><img src="docs/images/characters/arup_concept.jpg" width="180" alt="아루프 로봇 원화"/><br/><sub>로봇 콘셉트</sub></td>
+<td align="center"><img src="docs/images/characters/arup_idle.png" width="180" alt="아루프 도트"/><br/><sub>기본 도트</sub></td>
+<td align="center"><img src="docs/images/characters/arup_fly.gif" width="180" alt="아루프 비행 애니메이션"/><br/><sub>비행 모션</sub></td>
+<td align="center"><img src="docs/images/characters/arup_emotion.gif" width="180" alt="아루프 표정 애니메이션"/><br/><sub>표정 변화</sub></td>
+</tr>
+</table>
+
+### 몬스터
+
+초기 액션 RPG 개발 단계에서 사용한 몬스터 도트 애니메이션 4종입니다. 몬스터 캐릭터 리소스의 소개이며, 모든 몬스터의 인게임 동작이 완성되었다는 의미는 아닙니다.
+
+<table>
+<tr>
+<td align="center"><img src="docs/images/characters/monster_01.gif" width="165" alt="몬스터 디자인 1"/></td>
+<td align="center"><img src="docs/images/characters/monster_02.gif" width="165" alt="몬스터 디자인 2"/></td>
+<td align="center"><img src="docs/images/characters/monster_03.gif" width="165" alt="몬스터 디자인 3"/></td>
+<td align="center"><img src="docs/images/characters/monster_04.gif" width="165" alt="몬스터 디자인 4"/></td>
+</tr>
+</table>
+
 ## 시연 영상
 
-**2024년 8월 27일 촬영한 초기 버전의 타이틀·프롤로그 연출 영상**입니다. 캐릭터 이동이나 전투 전체 기능의 시연 영상은 아닙니다.
+[2024년 8월 27일 촬영한 초기 버전의 타이틀·프롤로그 연출 영상]입니다. 캐릭터 이동이나 전투 전체 기능의 시연 영상은 아닙니다.
 
 [▶ 초기 프롤로그 시연 영상 보기 (약 46초)](docs/videos/prologue_demo.mp4)
 
